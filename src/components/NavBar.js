@@ -26,7 +26,7 @@ function NavBar() {
         <>
             <nav className='navbar'>
                 <div className='navbar-container'>
-                    <Link to="/" className='navbar-logo' onClick={closeMobileMenu}>TRAVELKZ    <i className="fas fa-angle-right"></i></Link>
+                    <Link to="/" className='navbar-logo' onClick={closeMobileMenu}>TRAVELKZ</Link>
                     <div className="menu-icon" onClick={handleClick}>
                         <i className={click ? 'fas fa-times' : 'fas fa-bars'}/>
                     </div>
