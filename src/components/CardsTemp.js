@@ -6,6 +6,12 @@ import './Cards.css'
 
 function Cards() {
     const theme = useSelector(state => state)
+    const [items, setItems] = useState([]);
+    useEffect(()=>{
+        fetch('https://jsonplaceholder.typicode.com/photos')
+            .then(response => response.json())
+            .then(json => setItems(json.slice(0, 4)))
+    })
     return (
         <div className={`cards ${theme === 'light' ? 'light' : 'dark'}`}>
             <h1>Check out these EPIC places</h1>
@@ -26,24 +32,14 @@ function Cards() {
                         />
                     </ul>
                     <ul className='cards__items'>
-                        <CardItem
-                        src='images/img-3.jpg'
-                        text='Set Sail in the Atlantic Ocean visiting Uncharted Waters'
-                        label='Mystery'
-                        path='/services'
-                        />
-                        <CardItem
-                        src='images/img-4.jpg'
-                        text='Experience Football on Top of the Himilayan Mountains'
-                        label='Adventure'
-                        path='/products'
-                        />
-                        <CardItem
-                        src='images/img-8.jpg'
-                        text='Ride through the Sahara Desert on a guided camel tour'
-                        label='Adrenaline'
-                        path='/sign-up'
-                        />
+                        {items.map(item => (
+                            <CardItem
+                            src={item.url}
+                            text={item.title}
+                            label={item.id}
+                            path='/'
+                            />
+                        ))}
                     </ul>
                 </div>
             </div>
