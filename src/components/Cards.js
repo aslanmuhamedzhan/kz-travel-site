@@ -1,10 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import CardItem from './CardItem'
 import './Cards.css'
 
 function Cards() {
+    const theme = useSelector(state => state)
     return (
-        <div className='cards'>
+        <div className={`cards ${theme === 'light' ? 'light' : 'dark'}`}>
             <h1>Check out these EPIC places</h1>
             <div className="cards__container">
                 <div className="cards__wrapper">

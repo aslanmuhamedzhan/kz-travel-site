@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import Button from './Button';
 import './NavBar.css'
+import {useSelector, useDispatch} from 'react-redux'
+
 
 
 function NavBar() {
@@ -9,6 +11,8 @@ function NavBar() {
     const [button, setButton] = useState(true);
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false)
+    const theme = useSelector(state => state)
+    const dispatch = useDispatch();
 
     const showButton = () => {
         if (window.innerWidth <= 960) {
@@ -24,13 +28,17 @@ function NavBar() {
 
     return (
         <>
-            <nav className='navbar'>
+            <nav className={theme === 'light' ? 'navbar light' : 'navbar dark'}>
                 <div className='navbar-container'>
-                    <Link to="/" className='navbar-logo' onClick={closeMobileMenu}>TRAVELKZ</Link>
+                    <div className='logo-themetoggler'>
+                        <Link to='/' className='toggle-theme' onClick={()=>dispatch({type: 'toggle'})}><i className={theme === 'light' ? "fas fa-sun" : "fas fa-moon"}></i></Link>
+                        <Link to="/" className='navbar-logo' onClick={closeMobileMenu}> TRAVELKZ</Link>
+                    </div>
+                    
                     <div className="menu-icon" onClick={handleClick}>
                         <i className={click ? 'fas fa-times' : 'fas fa-bars'}/>
                     </div>
-                    <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                    <ul className={click ? `nav-menu active ${theme === 'light' ? 'light' : 'dark'}` : 'nav-menu'}>
                         <li className='nav-item'>
                             <Link to='/' className='nav-links' onClick={closeMobileMenu}>Home</Link>
                         </li>

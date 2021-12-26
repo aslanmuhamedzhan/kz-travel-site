@@ -1,11 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Button from './Button'
 import './Footer.css'
 
 function Footer() {
+    const theme = useSelector(state => state)
     return (
-        <div className='footer-container'>
+        <div className={`footer-container ${theme === 'light' ? 'light' : 'dark'}`}>
             <section className='footer-subscription'>
                 <p className="fooder-subscription-heading">
                     Joins the Adventure newsletter to receive our best vacation deals 

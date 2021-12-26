@@ -1,7 +1,14 @@
 .cards {
     padding: 4rem;
-    background: #fff;
   }
+
+.cards.light {
+  background: #fff;
+}
+
+.cards.dark {
+  background: #ccc5b9;
+}
   
   h1 {
     text-align: center;
